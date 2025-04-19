@@ -39,7 +39,7 @@ Before starting, ensure you have the following installed:
 ### Step 1: Clone the Repository
 
 ```bash
-git clone <repository-url>
+git clone https://github.com/Ehtisham1053/Mental-Health-Tracker.git
 cd MENTAL-HEALTH_TRACKER
 
 
