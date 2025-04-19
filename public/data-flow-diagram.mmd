@@ -1,0 +1,33 @@
+graph TD
+    A["User"] -->|"1. Submit Journal Entry"| B["Web Interface"]
+    B -->|"2. HTTP Request"| C["Flask Application"]
+    C -->|"3. Create Entry"| D["MentalHealthTracker"]
+    D -->|"4. Create JournalEntry"| E["JournalEntry"]
+    D -->|"5. Save Entries"| F["StorageManager"]
+    F -->|"6. Write JSON"| G["JSON File"]
+    
+    H["User"] -->|"1. Request Entries"| I["Web Interface"]
+    I -->|"2. HTTP Request"| J["Flask Application"]
+    J -->|"3. Get Entries"| K["MentalHealthTracker"]
+    K -->|"4. Load Entries"| L["StorageManager"]
+    L -->|"5. Read JSON"| M["JSON File"]
+    L -->|"6. Deserialize"| N["JournalEntry Objects"]
+    K -->|"7. Return Entries"| J
+    J -->|"8. HTTP Response"| I
+    I -->|"9. Display Entries"| H
+    
+    style A fill:#f9f9f9,stroke:#333,stroke-width:2px
+    style B fill:#3498db,stroke:#333,stroke-width:2px,color:#fff
+    style C fill:#2ecc71,stroke:#333,stroke-width:2px,color:#fff
+    style D fill:#9b59b6,stroke:#333,stroke-width:2px,color:#fff
+    style E fill:#e74c3c,stroke:#333,stroke-width:2px,color:#fff
+    style F fill:#f1c40f,stroke:#333,stroke-width:2px
+    style G fill:#95a5a6,stroke:#333,stroke-width:2px
+    
+    style H fill:#f9f9f9,stroke:#333,stroke-width:2px
+    style I fill:#3498db,stroke:#333,stroke-width:2px,color:#fff
+    style J fill:#2ecc71,stroke:#333,stroke-width:2px,color:#fff
+    style K fill:#9b59b6,stroke:#333,stroke-width:2px,color:#fff
+    style L fill:#f1c40f,stroke:#333,stroke-width:2px
+    style M fill:#95a5a6,stroke:#333,stroke-width:2px
+    style N fill:#e74c3c,stroke:#333,stroke-width:2px,color:#fff

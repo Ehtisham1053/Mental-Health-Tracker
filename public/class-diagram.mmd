@@ -1,0 +1,50 @@
+classDiagram
+    class JournalEntry {
+        +string date
+        +int mood
+        +string text
+        +to_dict() dict
+        +from_dict(data) JournalEntry
+    }
+    
+    class StorageManager {
+        +string file_path
+        +save_entries(entries) void
+        +load_entries() list
+    }
+    
+    class MentalHealthTracker {
+        +StorageManager storage
+        +list entries
+        +add_entry(date, mood, text) JournalEntry
+        +get_all_entries() list
+        +get_entries_by_date_range(start_date, end_date) list
+        +get_entries_by_mood_range(min_mood, max_mood) list
+    }
+    
+    class Analytics {
+        +MentalHealthTracker tracker
+        +get_average_mood() float
+        +get_best_day() JournalEntry
+        +get_worst_day() JournalEntry
+        +get_mood_data_for_chart() dict
+        +get_word_frequency(top_n) dict
+    }
+    
+    class FlaskApp {
+        +route_index() template
+        +route_entries_get() json
+        +route_entries_post() json
+        +route_entries_filter() json
+        +route_reports() template
+        +route_mood_data() json
+        +route_word_frequency() json
+        +route_mood_stats() json
+        +route_project_report() template
+    }
+    
+    MentalHealthTracker "1" --* "1" StorageManager : contains
+    MentalHealthTracker "1" --o "*" JournalEntry : manages
+    Analytics "1" --> "1" MentalHealthTracker : analyzes
+    FlaskApp "1" --> "1" MentalHealthTracker : uses
+    FlaskApp "1" --> "1" Analytics : uses

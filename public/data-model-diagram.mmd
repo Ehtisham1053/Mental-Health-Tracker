@@ -1,0 +1,13 @@
+erDiagram
+    JOURNAL_ENTRY {
+        string date PK
+        int mood
+        string text
+    }
+    
+    JSON_FILE {
+        string path
+        string content
+    }
+    
+    JOURNAL_ENTRY }|--|| JSON_FILE : stored_in

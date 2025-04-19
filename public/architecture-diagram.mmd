@@ -1,0 +1,32 @@
+graph TD
+    A["User Browser"] -->|HTTP Requests| B["Flask Application"]
+    B -->|HTTP Responses| A
+    
+    subgraph "Backend (Flask)"
+        B -->|Creates/Uses| C["MentalHealthTracker"]
+        B -->|Creates/Uses| D["Analytics"]
+        C -->|Creates/Owns| E["StorageManager"]
+        C -->|Contains| F["JournalEntry"]
+        D -->|Analyzes| F
+        E -->|Reads/Writes| G["JSON File"]
+    end
+    
+    subgraph "Frontend"
+        H["HTML Templates"] -->|Rendered by| B
+        I["CSS Styles"] -->|Applied to| H
+        J["JavaScript"] -->|Enhances| H
+        J -->|Fetch API| B
+        J -->|Renders| K["Chart.js Visualizations"]
+    end
+    
+    style A fill:#f9f9f9,stroke:#333,stroke-width:2px
+    style B fill:#3498db,stroke:#333,stroke-width:2px,color:#fff
+    style C fill:#2ecc71,stroke:#333,stroke-width:2px,color:#fff
+    style D fill:#9b59b6,stroke:#333,stroke-width:2px,color:#fff
+    style E fill:#e74c3c,stroke:#333,stroke-width:2px,color:#fff
+    style F fill:#f1c40f,stroke:#333,stroke-width:2px
+    style G fill:#95a5a6,stroke:#333,stroke-width:2px
+    style H fill:#3498db,stroke:#333,stroke-width:2px,color:#fff,stroke-dasharray: 5 5
+    style I fill:#e74c3c,stroke:#333,stroke-width:2px,color:#fff,stroke-dasharray: 5 5
+    style J fill:#2ecc71,stroke:#333,stroke-width:2px,color:#fff,stroke-dasharray: 5 5
+    style K fill:#9b59b6,stroke:#333,stroke-width:2px,color:#fff,stroke-dasharray: 5 5
