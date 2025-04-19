@@ -9,6 +9,12 @@ This project is a web application that allows users to track their mental health
 - **Word Cloud**: A dynamic word cloud generated from the journal entries, showing the most common words.
 
 ![Alt Text](images/frontend1.PNG)
+## Journel Display
+![Alt Text](images/journel.PNG)
+## Analytics Report
+![Alt Text](images/Mood%20analytics.PNG)
+
+
 
 ## Technologies Used
 
@@ -17,3 +23,25 @@ This project is a web application that allows users to track their mental health
 - **Libraries/Tools**:
   - `Chart.js`: For generating mood trend charts and word cloud visualization.
   - `fetch()`: For retrieving journal entry data from the backend API.
+
+
+
+## Setup Instructions
+
+### Prerequisites
+
+Before starting, ensure you have the following installed:
+
+- Python 3.7 or higher
+- Flask (for the backend)
+- A text editor (VSCode, Sublime Text, etc.)
+
+### Step 1: Clone the Repository
+
+```bash
+git clone <repository-url>
+cd MENTAL-HEALTH_TRACKER
+
+
+pip install flask
+python api/app.py
