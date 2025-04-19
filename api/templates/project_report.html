@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Report - Mental Health Tracker</title>
+    <link rel="stylesheet" href="/static/css/styles.css">
+    <link rel="stylesheet" href="/static/css/project-report.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Mental Health Tracker</h1>
+            <nav>
+                <ul>
+                    <li><a href="/">Journal</a></li>
+                    <li><a href="/reports">Reports</a></li>
+                    <li><a href="/project-report" class="active">Project Report</a></li>
+                    <li><a href="/documentation">Documentation</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <main class="project-report">
+            <h2>Project Report: Mental Health Tracker with Journal Analytics</h2>
+            
+            <section class="report-section">
+                <h3>Project Overview</h3>
+                <p>The Mental Health Tracker is a web application designed to help users monitor their mental well-being through daily journal entries and mood tracking. The application provides valuable insights into emotional patterns over time, helping users identify trends and potential triggers that affect their mental health.</p>
+                <p>This project combines a Flask backend with a responsive HTML, CSS, and JavaScript frontend to create a seamless user experience for mental health journaling and analytics.</p>
+            </section>
+            
+            <section class="report-section">
+                <h3>Thinking Behind the Project</h3>
+                <p>Mental health awareness and self-monitoring are increasingly recognized as important aspects of overall well-being. This project was conceived with the following goals in mind:</p>
+                <ul>
+                    <li>Provide users with a simple tool to track their daily mood and thoughts</li>
+                    <li>Help users identify patterns in their emotional well-being over time</li>
+                    <li>Offer insights through data visualization and text analysis</li>
+                    <li>Create a private, secure space for personal reflection</li>
+                </ul>
+                <p>The application uses a combination of quantitative (mood ratings) and qualitative (journal text) data to provide a comprehensive view of the user's mental health journey.</p>
+            </section>
+            
+            <section class="report-section">
+                <h3>Technical Architecture</h3>
+                <div class="architecture-diagram">
+                    <img src="/static/images/architecture.png" alt="Project Architecture Diagram">
+                </div>
+                <h4>Backend (Flask)</h4>
+                <p>The backend is built with Flask, a lightweight Python web framework. It implements a RESTful API architecture to handle data operations and analytics. The backend is organized using object-oriented programming principles with the following key components:</p>
+                <ul>
+                    <li><strong>JournalEntry Class:</strong> Represents individual journal entries with date, mood, and text attributes</li>
+                    <li><strong>MentalHealthTracker Class:</strong> Manages journal entries and provides methods for filtering and retrieval</li>
+                    <li><strong>StorageManager Class:</strong> Handles data persistence using JSON file storage</li>
+                    <li><strong>Analytics Class:</strong> Provides statistical analysis and reporting on journal entries</li>
+                </ul>
+                
+                <h4>Frontend (HTML, CSS, JavaScript)</h4>
+                <p>The frontend is built with vanilla HTML, CSS, and JavaScript to create a responsive and intuitive user interface. Key frontend features include:</p>
+                <ul>
+                    <li>Responsive design that works on desktop and mobile devices</li>
+                    <li>Interactive forms for journal entry submission</li>
+                    <li>Dynamic content loading using fetch API</li>
+                    <li>Data visualization using Chart.js</li>
+                    <li>Filter controls for journal entries</li>
+                </ul>
+                
+                <h4>Data Storage</h4>
+                <p>The application uses JSON file storage to persist journal entries locally. This approach was chosen for its simplicity and compatibility with the object-oriented design of the application.</p>
+            </section>
+            
+            <section class="report-section">
+                <h3>Module Details</h3>
+                
+                <div class="module-detail">
+                    <h4>JournalEntry Module</h4>
+                    <p>This module defines the structure of journal entries and provides methods for serialization and deserialization.</p>
+                    <pre><code>class JournalEntry:
+    def __init__(self, date, mood, text):
+        self.date = date
+        self.mood = mood
+        self.text = text
+    
+    def to_dict(self):
+        return {
+            'date': self.date,
+            'mood': self.mood,
+            'text': self.text
+        }
+    
+    @classmethod
+    def from_dict(cls, data):
+        return cls(data['date'], data['mood'], data['text'])</code></pre>
+                </div>
+                
+                <div class="module-detail">
+                    <h4>StorageManager Module</h4>
+                    <p>This module handles the persistence of journal entries using JSON file storage.</p>
+                    <pre><code>class StorageManager:
+    def __init__(self, file_path='data/journal_entries.json'):
+        self.file_path = file_path
+    
+    def save_entries(self, entries):
+        with open(self.file_path, 'w') as f:
+            json.dump([entry.to_dict() for entry in entries], f, indent=2)
+    
+    def load_entries(self):
+        if not os.path.exists(self.file_path):
+            return []
+        
+        try:
+            with open(self.file_path, 'r') as f:
+                data = json.load(f)
+                return [JournalEntry.from_dict(entry) for entry in data]
+        except (json.JSONDecodeError, FileNotFoundError):
+            return []</code></pre>
+                </div>
+                
+                <div class="module-detail">
+                    <h4>MentalHealthTracker Module</h4>
+                    <p>This module manages journal entries and provides methods for adding, retrieving, and filtering entries.</p>
+                    <pre><code>class MentalHealthTracker:
+    def __init__(self):
+        self.storage = StorageManager()
+        self.entries = self.storage.load_entries()
+    
+    def add_entry(self, date, mood, text):
+        entry = JournalEntry(date, mood, text)
+        self.entries.append(entry)
+        self.storage.save_entries(self.entries)
+        return entry
+    
+    def get_all_entries(self):
+        return sorted(self.entries, key=lambda x: x.date, reverse=True)
+    
+    def get_entries_by_date_range(self, start_date, end_date):
+        return [e for e in self.entries if start_date <= e.date <= end_date]
+    
+    def get_entries_by_mood_range(self, min_mood, max_mood):
+        return [e for e in self.entries if min_mood <= e.mood <= max_mood]</code></pre>
+                </div>
+                
+                <div class="module-detail">
+                    <h4>Analytics Module</h4>
+                    <p>This module provides statistical analysis and reporting on journal entries.</p>
+                    <pre><code>class Analytics:
+    def __init__(self, tracker):
+        self.tracker = tracker
+    
+    def get_average_mood(self):
+        if not self.tracker.entries:
+            return 0
+        return sum(entry.mood for entry in self.tracker.entries) / len(self.tracker.entries)
+    
+    def get_best_day(self):
+        if not self.tracker.entries:
+            return None
+        return max(self.tracker.entries, key=lambda x: x.mood)
+    
+    def get_worst_day(self):
+        if not self.tracker.entries:
+            return None
+        return min(self.tracker.entries, key=lambda x: x.mood)
+    
+    def get_mood_data_for_chart(self):
+        entries = sorted(self.tracker.entries, key=lambda x: x.date)
+        return {
+            'dates': [entry.date for entry in entries],
+            'moods': [entry.mood for entry in entries]
+        }
+    
+    def get_word_frequency(self, top_n=10):
+        # Implementation details...</code></pre>
+                </div>
+                
+                <div class="module-detail">
+                    <h4>Flask Routes</h4>
+                    <p>The Flask application defines several routes to handle user interactions:</p>
+                    <ul>
+                        <li><code>/</code> - Renders the main journal entry page</li>
+                        <li><code>/entries</code> - GET: Retrieves all entries, POST: Adds a new entry</li>
+                        <li><code>/entries/filter</code> - Filters entries by mood or date range</li>
+                        <li><code>/reports</code> - Renders the reports page</li>
+                        <li><code>/api/mood-data</code> - Returns mood data for charts</li>
+                        <li><code>/api/word-frequency</code> - Returns word frequency data</li>
+                        <li><code>/api/mood-stats</code> - Returns mood statistics</li>
+                        <li><code>/project-report</code> - Renders this project report</li>
+                    </ul>
+                </div>
+            </section>
+            
+            <section class="report-section">
+                <h3>Frontend Implementation</h3>
+                <p>The frontend is built with a focus on user experience and responsive design. Key components include:</p>
+                
+                <h4>Journal Entry Form</h4>
+                <p>The journal entry form allows users to input their mood rating and journal text. The form includes validation to ensure all required fields are completed before submission.</p>
+                
+                <h4>Journal Entries List</h4>
+                <p>The entries list displays past journal entries with filtering options. Users can filter entries by mood range or date range.</p>
+                
+                <h4>Reports Page</h4>
+                <p>The reports page provides visual representations of mood trends and word frequency analysis. It includes:</p>
+                <ul>
+                    <li>A line chart showing mood trends over time</li>
+                    <li>Statistical cards showing average mood, best day, and worst day</li>
+                    <li>A word cloud visualization of the most frequent words in journal entries</li>
+                </ul>
+            </section>
+            
+            <section class="report-section">
+                <h3>Challenges and Solutions</h3>
+                <p>During the development of this project, several challenges were encountered and addressed:</p>
+                
+                <h4>Data Persistence</h4>
+                <p><strong>Challenge:</strong> Implementing a reliable data storage system without a database.</p>
+                <p><strong>Solution:</strong> Used JSON file storage with proper error handling to ensure data integrity.</p>
+                
+                <h4>Text Analysis</h4>
+                <p><strong>Challenge:</strong> Extracting meaningful insights from unstructured journal text.</p>
+                <p><strong>Solution:</strong> Implemented word frequency analysis with stop word filtering to identify recurring themes in journal entries.</p>
+                
+                <h4>Responsive Design</h4>
+                <p><strong>Challenge:</strong> Creating a user interface that works well on both desktop and mobile devices.</p>
+                <p><strong>Solution:</strong> Used CSS flexbox and media queries to create a responsive layout that adapts to different screen sizes.</p>
+            </section>
+            
+            <section class="report-section">
+                <h3>Future Enhancements</h3>
+                <p>The Mental Health Tracker could be enhanced with the following features in future iterations:</p>
+                <ul>
+                    <li>User authentication to support multiple users</li>
+                    <li>Advanced text analysis using natural language processing</li>
+                    <li>Mood prediction based on past patterns</li>
+                    <li>Integration with external APIs for weather data or other contextual information</li>
+                    <li>Export functionality for journal entries</li>
+                    <li>Reminder system for daily journaling</li>
+                </ul>
+            </section>
+            
+            <section class="report-section">
+                <h3>Conclusion</h3>
+                <p>The Mental Health Tracker with Journal Analytics demonstrates the effective use of Python, Flask, and web technologies to create a useful application for mental health monitoring. The project showcases object-oriented programming principles, data visualization, and responsive web design.</p>
+                <p>By combining quantitative mood tracking with qualitative journal entries, the application provides users with a comprehensive tool for understanding their mental health patterns and making positive changes.</p>
+            </section>
+        </main>
+
+        <footer>
+            <p>&copy; 2025 Mental Health Tracker</p>
+        </footer>
+    </div>
+</body>
+</html>

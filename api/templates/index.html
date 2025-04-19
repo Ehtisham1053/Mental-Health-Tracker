@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mental Health Tracker</title>
+    <link rel="stylesheet" href="/static/css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Mental Health Tracker</h1>
+            <nav>
+                <ul>
+                    <li><a href="/" class="active">Journal</a></li>
+                    <li><a href="/reports">Reports</a></li>
+                    <li><a href="/project-report">Project Report</a></li>
+                    <li><a href="/documentation">Documentation</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <main>
+            <section class="journal-form">
+                <h2>Add New Journal Entry</h2>
+                <form id="entryForm">
+                    <div class="form-group">
+                        <label for="date">Date:</label>
+                        <input type="date" id="date" name="date" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="mood">Mood (1-10):</label>
+                        <div class="mood-slider-container">
+                            <input type="range" id="mood" name="mood" min="1" max="10" value="5" required>
+                            <span id="moodValue">5</span>
+                            <div class="mood-labels">
+                                <span>Low</span>
+                                <span>High</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="text">Journal Entry:</label>
+                        <textarea id="text" name="text" rows="6" placeholder="Write about your day, thoughts, and feelings..." required></textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn-primary">Save Entry</button>
+                </form>
+            </section>
+
+            <section class="entries-section">
+                <h2>Your Journal Entries</h2>
+                
+                <div class="filter-controls">
+                    <div class="filter-group">
+                        <label>Filter by Mood:</label>
+                        <div class="mood-range">
+                            <input type="number" id="minMood" min="1" max="10" value="1">
+                            <span>to</span>
+                            <input type="number" id="maxMood" min="1" max="10" value="10">
+                        </div>
+                    </div>
+                    
+                    <div class="filter-group">
+                        <label>Filter by Date:</label>
+                        <div class="date-range">
+                            <input type="date" id="startDate">
+                            <span>to</span>
+                            <input type="date" id="endDate">
+                        </div>
+                    </div>
+                    
+                    <button id="applyFilter" class="btn-secondary">Apply Filter</button>
+                    <button id="resetFilter" class="btn-outline">Reset</button>
+                </div>
+                
+                <div id="entriesList" class="entries-list">
+                    <!-- Entries will be loaded here -->
+                    <div class="loading">Loading entries...</div>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>&copy; 2025 Mental Health Tracker</p>
+        </footer>
+    </div>
+
+    <script src="/static/js/journal.js"></script>
+</body>
+</html>

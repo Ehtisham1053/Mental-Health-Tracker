@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mood Reports - Mental Health Tracker</title>
+    <link rel="stylesheet" href="/static/css/styles.css">
+    <!-- Include Chart.js from CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Mental Health Tracker</h1>
+            <nav>
+                <ul>
+                    <li><a href="/">Journal</a></li>
+                    <li><a href="/reports" class="active">Reports</a></li>
+                    <li><a href="/project-report">Project Report</a></li>
+                    <li><a href="/documentation">Documentation</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <main>
+            <section class="reports-section">
+                <h2>Your Mood Analytics</h2>
+                
+                <div class="stats-cards">
+                    <div class="stat-card" id="averageMood">
+                        <h3>Average Mood</h3>
+                        <div class="stat-value">-</div>
+                    </div>
+                    
+                    <div class="stat-card" id="bestDay">
+                        <h3>Best Day</h3>
+                        <div class="stat-value">-</div>
+                        <div class="stat-details"></div>
+                    </div>
+                    
+                    <div class="stat-card" id="worstDay">
+                        <h3>Worst Day</h3>
+                        <div class="stat-value">-</div>
+                        <div class="stat-details"></div>
+                    </div>
+                </div>
+                
+                <div class="chart-container">
+                    <h3>Mood Trends Over Time</h3>
+                    <canvas id="moodChart" style="width:100%; height:300px;"></canvas>
+                </div>
+                
+                <div class="word-frequency">
+                    <h3>Most Common Words in Your Journal</h3>
+                    <div class="word-cloud-container">
+                        <canvas id="wordCloud"></canvas>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>&copy; 2025 Mental Health Tracker</p>
+        </footer>
+    </div>
+
+    <!-- Include the reports.js script -->
+    <script src="/static/js/reports.js"></script>
+</body>
+</html>

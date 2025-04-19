@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentation - Mental Health Tracker</title>
+    <link rel="stylesheet" href="/static/css/styles.css">
+    <link rel="stylesheet" href="/static/css/documentation.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Mental Health Tracker</h1>
+            <nav>
+                <ul>
+                    <li><a href="/">Journal</a></li>
+                    <li><a href="/reports">Reports</a></li>
+                    <li><a href="/project-report">Project Report</a></li>
+                    <li><a href="/documentation" class="active">Documentation</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <main class="documentation">
+            <section class="doc-header">
+                <h2>Mental Health Tracker Documentation</h2>
+                <div class="doc-actions">
+                    <button id="downloadPdf" class="btn-primary">Download as PDF</button>
+                </div>
+            </section>
+            
+            <div class="doc-tabs">
+                <div class="tab-buttons">
+                    <button class="tab-button active" data-tab="srs">SRS Document</button>
+                    <button class="tab-button" data-tab="architecture">Architecture</button>
+                    <button class="tab-button" data-tab="class-diagram">Class Diagram</button>
+                    <button class="tab-button" data-tab="data-model">Data Model</button>
+                </div>
+                
+                <div class="tab-content">
+                    <div id="srs" class="tab-pane active">
+                        <h3>Software Requirements Specification</h3>
+                        
+                        <section class="doc-section">
+                            <h4>1. Introduction</h4>
+                            
+                            <div class="subsection">
+                                <h5>1.1 Purpose</h5>
+                                <p>
+                                    This Software Requirements Specification (SRS) document describes the functional and non-functional
+                                    requirements for the Mental Health Tracker with Journal Analytics application. This document is
+                                    intended for developers, testers, and stakeholders involved in the development process.
+                                </p>
+                            </div>
+                            
+                            <div class="subsection">
+                                <h5>1.2 Scope</h5>
+                                <p>
+                                    The Mental Health Tracker is a web application that allows users to track their mental health through
+                                    daily journal entries. The application provides insights into mood trends over time and analyzes
+                                    journal content to identify patterns. The system will store all journal entries locally using JSON
+                                    files.
+                                </p>
+                            </div>
+                            
+                            <div class="subsection">
+                                <h5>1.3 Definitions, Acronyms, and Abbreviations</h5>
+                                <ul>
+                                    <li><strong>SRS</strong> - Software Requirements Specification</li>
+                                    <li><strong>UI</strong> - User Interface</li>
+                                    <li><strong>API</strong> - Application Programming Interface</li>
+                                    <li><strong>JSON</strong> - JavaScript Object Notation</li>
+                                    <li><strong>OOP</strong> - Object-Oriented Programming</li>
+                                </ul>
+                            </div>
+                        </section>
+                        
+                        <section class="doc-section">
+                            <h4>2. Overall Description</h4>
+                            
+                            <div class="subsection">
+                                <h5>2.1 Product Perspective</h5>
+                                <p>
+                                    The Mental Health Tracker is a standalone web application that does not require integration with
+                                    external systems. It operates as a self-contained system with a Flask backend and HTML/CSS/JavaScript
+                                    frontend.
+                                </p>
+                            </div>
+                            
+                            <div class="subsection">
+                                <h5>2.2 Product Functions</h5>
+                                <p>The primary functions of the Mental Health Tracker include:</p>
+                                <ul>
+                                    <li>Recording daily journal entries with mood ratings</li>
+                                    <li>Viewing past journal entries</li>
+                                    <li>Filtering entries by date or mood</li>
+                                    <li>Generating mood reports and analytics</li>
+                                    <li>Analyzing word frequency in journal entries</li>
+                                    <li>Providing a comprehensive project report</li>
+                                </ul>
+                            </div>
+                            
+                            <!-- Additional sections would continue here -->
+                        </section>
+                        
+                        <!-- More SRS sections would be added here -->
+                    </div>
+                    
+                    <div id="architecture" class="tab-pane">
+                        <h3>System Architecture</h3>
+                        
+                        <section class="doc-section">
+                            <h4>Architecture Overview</h4>
+                            <p>
+                                The Mental Health Tracker follows a Model-View-Controller (MVC) architecture pattern. The system is
+                                divided into three main components:
+                            </p>
+                            
+                            <div class="architecture-diagram">
+                                <img src="/static/images/architecture-diagram.png" alt="Architecture Diagram">
+                            </div>
+                            
+                            <div class="component-grid">
+                                <div class="component-card">
+                                    <h5>Model</h5>
+                                    <p>
+                                        Handles data management and business logic. Includes classes for journal entries, data storage, and
+                                        analytics processing.
+                                    </p>
+                                </div>
+                                
+                                <div class="component-card">
+                                    <h5>View</h5>
+                                    <p>
+                                        Handles the presentation layer. Includes HTML templates, CSS styling, and JavaScript for dynamic
+                                        content and visualizations.
+                                    </p>
+                                </div>
+                                
+                                <div class="component-card">
+                                    <h5>Controller</h5>
+                                    <p>
+                                        Handles user input and application flow. Includes Flask routes that process requests and coordinate
+                                        between Model and View.
+                                    </p>
+                                </div>
+                            </div>
+                        </section>
+                        
+                        <!-- More architecture sections would be added here -->
+                    </div>
+                    
+                    <div id="class-diagram" class="tab-pane">
+                        <h3>Class Diagram</h3>
+                        
+                        <section class="doc-section">
+                            <h4>UML Class Diagram</h4>
+                            <p>
+                                The following UML class diagram illustrates the structure and relationships between the classes in the
+                                Mental Health Tracker application:
+                            </p>
+                            
+                            <div class="diagram">
+                                <img src="/static/images/class-diagram.png" alt="UML Class Diagram">
+                            </div>
+                        </section>
+                        
+                        <!-- More class diagram sections would be added here -->
+                    </div>
+                    
+                    <div id="data-model" class="tab-pane">
+                        <h3>Data Model</h3>
+                        
+                        <section class="doc-section">
+                            <h4>Data Storage Overview</h4>
+                            <p>
+                                The Mental Health Tracker uses a file-based storage system with JSON as the data format. This approach
+                                was chosen for its simplicity and compatibility with the object-oriented design of the application.
+                            </p>
+                            
+                            <div class="subsection">
+                                <h5>JSON File Structure</h5>
+                                <p>
+                                    All journal entries are stored in a single JSON file located at <code>data/journal_entries.json</code>.
+                                    The file contains an array of journal entry objects, each with the following structure:
+                                </p>
+                                
+                                <pre class="code-block">
+[
+  {
+    "date": "2025-04-15",
+    "mood": 8,
+    "text": "Today was a productive day. I completed my project and felt accomplished."
+  },
+  {
+    "date": "2025-04-14",
+    "mood": 5,
+    "text": "Average day, nothing special happened."
+  }
+]</pre>
+                            </div>
+                            
+                            <div class="diagram">
+                                <img src="/static/images/data-model-diagram.png" alt="Data Model Diagram">
+                            </div>
+                        </section>
+                        
+                        <!-- More data model sections would be added here -->
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <p>&copy; 2025 Mental Health Tracker</p>
+        </footer>
+    </div>
+
+    <script src="/static/js/documentation.js"></script>
+</body>
+</html>

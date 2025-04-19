@@ -1,0 +1,76 @@
+/* Project Report Specific Styles */
+.project-report {
+  max-width: 900px;
+  margin: 0 auto;
+  line-height: 1.8;
+}
+
+.report-section {
+  margin-bottom: 40px;
+}
+
+.report-section h3 {
+  color: var(--primary-color);
+  font-size: 24px;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--medium-gray);
+}
+
+.report-section h4 {
+  font-size: 20px;
+  margin: 25px 0 15px;
+  color: var(--secondary-color);
+}
+
+.report-section p {
+  margin-bottom: 15px;
+}
+
+.report-section ul {
+  margin: 15px 0;
+  padding-left: 20px;
+}
+
+.report-section li {
+  margin-bottom: 8px;
+}
+
+.architecture-diagram {
+  margin: 20px 0;
+  text-align: center;
+}
+
+.architecture-diagram img {
+  max-width: 100%;
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+}
+
+.module-detail {
+  margin-bottom: 30px;
+  background-color: var(--light-gray);
+  padding: 20px;
+  border-radius: var(--border-radius);
+}
+
+.module-detail pre {
+  background-color: #f8f8f8;
+  padding: 15px;
+  border-radius: var(--border-radius);
+  overflow-x: auto;
+  margin-top: 15px;
+  border: 1px solid var(--medium-gray);
+}
+
+.module-detail code {
+  font-family: "Courier New", Courier, monospace;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+@media (max-width: 768px) {
+  .project-report {
+    padding: 0 15px;
+  }
+}
