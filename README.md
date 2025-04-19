@@ -8,7 +8,7 @@ This project is a web application that allows users to track their mental health
 - **Mood Trend Visualization**: A line chart shows mood trends over time.
 - **Word Cloud**: A dynamic word cloud generated from the journal entries, showing the most common words.
 
-![Mood Chart Example](.images\frontend1.PNG)   
+![Alt Text](images\frontend1.PNG) 
 
 ## Technologies Used
 
